@@ -85,11 +85,13 @@ class Program
     {
         List<Equipement> equipements = new List<Equipement>();
         equipements.Add(new MobileEquipement("JCB", "Construction Vehicle", "Mobile", 10));
-        equipements.Add(new ImmobileEquipement("Ladder", "Stair to climb", "Immobile", 10));
+        equipements.Add(new ImmobileEquipement("Ladder", "Stair to climb", "Immobile", 40));
+        equipements.Add(new MobileEquipement("Truck", "Carry Transport Vehicle", "Mobile", 50));
+        equipements.Add(new ImmobileEquipement("Brush", "Brush to paint", "Immobile", 100));
 
         List<int> equipmentsToMove = new List<int>();
         equipmentsToMove.Add(0);
-        equipmentsToMove.Add(1);
+        equipmentsToMove.Add(2);
 
         foreach (var index in equipmentsToMove)
         {
@@ -97,19 +99,21 @@ class Program
         }
 
         Console.WriteLine("Equipments that has not been moved till now");
-        for (int index = 0; index < equipmentsToMove.Count; index++)
+        for (int index = 0; index < equipements.Count; index++)
         {
             if(!equipmentsToMove.Contains(index)){
                 equipements[index].ShowDeatils();
             }
         }
 
+        Console.WriteLine("\nName and Description of all the equipements:");
         foreach (var equipement in equipements)
         {
             Console.WriteLine(equipement.Name);
             Console.WriteLine(equipement.Description);
         }
 
+        Console.WriteLine("\nAll details of all the equipements:");
         foreach (var equipement in equipements)
         {
             equipement.ShowDeatils();
