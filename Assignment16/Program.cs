@@ -6,6 +6,7 @@
         {
             Console.Write("Enter the directory path: ");
             var directoryPath = Console.ReadLine();
+            // var directoryPath = @"C:\Users\SahinDas";
 
             try
             {
@@ -19,7 +20,7 @@
 
         private static void AnalyzeDirectory(string directoryPath)
         {
-            string[] files = Directory.GetFiles(directoryPath);
+            var files = Directory.GetFiles(directoryPath);
             if (files.Length == 0)
             {
                 Console.WriteLine("No files found.");
@@ -45,15 +46,19 @@
                 Console.WriteLine($"{keyValuePair.Key}: {keyValuePair.Value}");
             }
 
-            Array.Sort(files, (a, b) => b.Length.CompareTo(a.Length));
+            var fileDetails = files
+                .Select(file => new { File = file, Size = new FileInfo(file).Length })
+                .OrderByDescending(file => file.Size)
+                .Take(5)
+                .ToList();
             
             Console.WriteLine("Top 5 largest files found:");
-            for (var i = 0; i < 5; i++)
+            foreach (var fileDetail in fileDetails)
             {
-                Console.WriteLine(files[i] + " (" + files[i].Length + " bytes)");
+                Console.WriteLine(fileDetail.File + " (" + fileDetail.Size + " bytes)");
             }
             
-            Console.WriteLine("File with maximum length: " + files[0]);
+            Console.WriteLine("File with maximum length: " + fileDetails[0].File);
         }
     }
 }

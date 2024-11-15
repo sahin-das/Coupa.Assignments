@@ -11,7 +11,7 @@ namespace Assignment17
 
     class Program
     {
-        static int playCount = 0;
+        static int playCount;
 
         public static void Main(string[] args)
         {
@@ -26,77 +26,73 @@ namespace Assignment17
                     }
 
                     Console.WriteLine("Enter any number from 1-5:");
-                    var userChoice = Convert.ToInt32(Console.ReadLine());
+                    var userChoice = Convert.ToInt32(Console.ReadLine()); 
 
-                    var message = GetMessageForChoice(userChoice);
-                    Console.WriteLine(message);
+                    switch (userChoice)
+                    {
+                        case 1:
+                            Console.WriteLine("Enter even number:");
+                            break;
+                        case 2:
+                            Console.WriteLine("Enter odd number:");
+                            break;
+                        case 3:
+                            Console.WriteLine("Enter a prime number:");
+                            break;
+                        case 4:
+                            Console.WriteLine("Enter a negative number:");
+                            break;
+                        case 5:
+                            Console.WriteLine("Enter zero:");
+                            break;
+                        default:
+                            throw new CustomException("Invalid choice! Please enter a number between 1 and 5.");
+                    }
+                    
                     var userInput = Console.ReadLine();
-
-                    ValidateInput(userChoice, userInput);
+                    ValidateInput(userChoice, Convert.ToInt32(userInput));
 
                     playCount++;
                     Console.WriteLine("Success! You've entered a valid number. Let's try again.\n");
-
                 }
                 catch (CustomException ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
-                catch (FormatException)
+                catch (Exception)
                 {
                     Console.WriteLine("Error: Invalid input format. Please enter a valid number.");
                 }
             }
         }
 
-        static string GetMessageForChoice(int choice)
+        private static bool ValidateInput(int choice, int input)
         {
             switch (choice)
             {
                 case 1:
-                    return "Enter even number:";
-                case 2:
-                    return "Enter odd number:";
-                case 3:
-                    return "Enter a prime number:";
-                case 4:
-                    return "Enter a negative number:";
-                case 5:
-                    return "Enter zero:";
-                default:
-                    throw new CustomException("Invalid choice! Please enter a number between 1 and 5.");
-            }
-        }
-
-        static void ValidateInput(int choice, string input)
-        {
-            switch (choice)
-            {
-                case 1:
-                    if (!IsEven(Convert.ToInt32(input))) throw new CustomException("Error: The number is not even.");
+                    if (input % 2 != 0) throw new CustomException("Error: The number is not even.");
                     break;
                 case 2:
-                    if (!IsOdd(Convert.ToInt32(input))) throw new CustomException("Error: The number is not odd.");
+                    if (input % 2 == 0) throw new CustomException("Error: The number is not odd.");
                     break;
                 case 3:
-                    if (!IsPrime(Convert.ToInt32(input))) throw new CustomException("Error: The number is not prime.");
+                    if (!IsPrime(input)) throw new CustomException("Error: The number is not prime.");
                     break;
                 case 4:
-                    if (!IsNegative(Convert.ToInt32(input)))
-                        throw new CustomException("Error: The number is not negative.");
+                    if (input >= 0) throw new CustomException("Error: The number is not negative.");
                     break;
                 case 5:
-                    if (Convert.ToInt32(input) != 0) throw new CustomException("Error: The number is not zero.");
+                    if (input != 0) throw new CustomException("Error: The number is not zero.");
                     break;
                 default:
                     throw new CustomException("Invalid choice! Please enter a number between 1 and 5.");
             }
+
+            return true;
         }
 
-        static bool IsEven(int number) => number % 2 == 0;
-        static bool IsOdd(int number) => number % 2 != 0;
-
-        static bool IsPrime(int number)
+        private static bool IsPrime(int number)
         {
             if (number <= 1) return false;
             for (var i = 2; i <= Math.Sqrt(number); i++)
@@ -106,7 +102,5 @@ namespace Assignment17
 
             return true;
         }
-
-        static bool IsNegative(int number) => number < 0;
     }
 }
