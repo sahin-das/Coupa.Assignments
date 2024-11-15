@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment1", "Assignment1.csproj", "{5AF4DDCD-E6AA-4A07-AD93-4BFA517F803C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment1", "Assignment1.csproj", "{5AF4DDCD-E6AA-4A07-AD93-4BFA517F803C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment2", "..\Assignment2\Assignment2.csproj", "{B1C77C83-0B81-40D8-866D-B744C62B57AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment2", "..\Assignment2\Assignment2.csproj", "{B1C77C83-0B81-40D8-866D-B744C62B57AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment3", "..\Assignment3\Assignment3.csproj", "{6D26F3ED-7DD2-45AD-A57E-1FC0D5E9B3B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment3", "..\Assignment3\Assignment3.csproj", "{6D26F3ED-7DD2-45AD-A57E-1FC0D5E9B3B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment4", "..\Assignment4\Assignment4.csproj", "{BB556D38-5E76-4D84-AE9E-5C479641C107}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment4", "..\Assignment4\Assignment4.csproj", "{BB556D38-5E76-4D84-AE9E-5C479641C107}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment5", "..\Assignment5\Assignment5.csproj", "{B6DEE1C3-A8FE-4F4F-B9F1-0631D522D267}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment5", "..\Assignment5\Assignment5.csproj", "{B6DEE1C3-A8FE-4F4F-B9F1-0631D522D267}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment6", "..\Assignment6\Assignment6.csproj", "{CF6B729C-5FA8-4F43-8849-6B7149B3A124}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment6", "..\Assignment6\Assignment6.csproj", "{CF6B729C-5FA8-4F43-8849-6B7149B3A124}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment7", "..\Assignment7\Assignment7.csproj", "{60A47B1C-646F-44BF-880C-4A4BD7D18A85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{CF6B729C-5FA8-4F43-8849-6B7149B3A124}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF6B729C-5FA8-4F43-8849-6B7149B3A124}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF6B729C-5FA8-4F43-8849-6B7149B3A124}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60A47B1C-646F-44BF-880C-4A4BD7D18A85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60A47B1C-646F-44BF-880C-4A4BD7D18A85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60A47B1C-646F-44BF-880C-4A4BD7D18A85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60A47B1C-646F-44BF-880C-4A4BD7D18A85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

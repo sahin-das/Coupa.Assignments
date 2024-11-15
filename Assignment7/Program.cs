@@ -110,24 +110,26 @@ public class RedheadDuck : IDuck
     }
 }
 
-class Program
+internal class Program
 {
-    static void Main()
+    public static void Main()
     {
-        RubberDuck rubberDuck = new RubberDuck(0.5, 2);
-        MallardDuck mallardDuck = new MallardDuck(1.5, 4);
-        RedheadDuck redheadDuck = new RedheadDuck(1, 3);
+        List<IDuck> ducks = new List<IDuck>();
+        ducks.Add(new RubberDuck(5, 2));
+        ducks.Add(new MallardDuck(1, 3));
+        ducks.Add(new RedheadDuck(2, 4));
 
-        rubberDuck.MakeSound();
-        rubberDuck.Fly();
-        rubberDuck.ShowDetails();
+        ducks.RemoveAt(0);
+        ducks.Clear();
 
-        mallardDuck.MakeSound();
-        mallardDuck.Fly();
-        mallardDuck.ShowDetails();
-
-        redheadDuck.MakeSound();
-        redheadDuck.Fly();
-        redheadDuck.ShowDetails();
+        foreach (var duck in ducks.OrderBy(d => d.Weight))
+        {
+            duck.ShowDetails();
+        }
+        
+        foreach (var duck in ducks.OrderBy(d => d.NumberOfWings))
+        {
+            duck.ShowDetails();
+        }
     }
 }
