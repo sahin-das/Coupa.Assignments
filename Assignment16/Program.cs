@@ -5,7 +5,7 @@
         public static void Main(string[] args)
         {
             Console.Write("Enter the directory path: ");
-            string directoryPath = @"C:\Users\SahinDas";
+            var directoryPath = Console.ReadLine();
 
             try
             {
@@ -17,7 +17,7 @@
             }
         }
 
-        public static void AnalyzeDirectory(string directoryPath)
+        private static void AnalyzeDirectory(string directoryPath)
         {
             string[] files = Directory.GetFiles(directoryPath);
             if (files.Length == 0)
@@ -31,7 +31,7 @@
             var textFiles = files.Where(f => f.EndsWith(".txt"));
             Console.WriteLine($"TextFiles Found in {directoryPath}: {textFiles.Count()}");
             
-            Dictionary<string, int> fileCount = new Dictionary<string, int>();
+            var fileCount = new Dictionary<string, int>();
             foreach (var file in files)
             {
                 var extension = Path.GetExtension(file);
@@ -48,7 +48,7 @@
             Array.Sort(files, (a, b) => b.Length.CompareTo(a.Length));
             
             Console.WriteLine("Top 5 largest files found:");
-            for (int i = 0; i < 5; i++)
+            for (var i = 0; i < 5; i++)
             {
                 Console.WriteLine(files[i] + " (" + files[i].Length + " bytes)");
             }

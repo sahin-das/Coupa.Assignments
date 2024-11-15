@@ -6,7 +6,7 @@ namespace Assignment8
     {
         public static void Main(string[] args)
         {
-            PriorityQueue<string> queue = new PriorityQueue<string>();
+            var queue = new PriorityQueue<string>();
             queue.Enqueue(2, "Task 2");
             queue.Enqueue(1, "Task 1");
             queue.Enqueue(3, "Task 3");
@@ -70,7 +70,7 @@ namespace Assignment8
         {
             if (Count == 0) throw new InvalidOperationException("The queue is empty.");
 
-            int highestPriority = GetHighestPriority();
+            var highestPriority = GetHighestPriority();
             return elements[highestPriority][0];
         }
 

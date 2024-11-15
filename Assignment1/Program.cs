@@ -4,15 +4,14 @@ public class Assignment1
 {
     public static void Main(string[] args)
     {
-        //Convert to Integer
+        // Convert to Integer
         Console.WriteLine("Enter an string:");
-        string strInput = Console.ReadLine();
+        var strInput = Console.ReadLine();
 
         Console.WriteLine("Parsed integer using int.Parse: " + int.Parse(strInput));
         Console.WriteLine("Parsed integer using Convert.ToInt32: " + Convert.ToInt32(strInput));
 
-        int intNumber;
-        bool intSuccess = int.TryParse(strInput, out intNumber);
+        var intSuccess = int.TryParse(strInput, out var intNumber);
         if (intSuccess)
         {
             Console.WriteLine("Parsed integer using int.TryParse: " + intNumber);
@@ -29,8 +28,7 @@ public class Assignment1
         Console.WriteLine("Parsed float using float.Parse: " + float.Parse(strInput));
         Console.WriteLine("Parsed float using Convert.ToSingle: " + Convert.ToSingle(strInput));
 
-        float floatNumber;
-        bool floatSuccess = float.TryParse(strInput, out floatNumber);
+        var floatSuccess = float.TryParse(strInput, out var floatNumber);
         if (floatSuccess)
         {
             Console.WriteLine("Parsed float using float.TryParse: " + floatNumber);
@@ -40,15 +38,13 @@ public class Assignment1
             Console.WriteLine("Invalid input. Could not parse to float.");
         }
 
-
-        // ** Convert to Boolean **
+        // Convert to Boolean
         Console.WriteLine("Enter a boolean string (true/false):");
-        string boolInput = Console.ReadLine();
+        var boolInput = Console.ReadLine();
         Console.WriteLine("Parsed boolean using bool.Parse: " + bool.Parse(boolInput));
         Console.WriteLine("Parsed boolean using Convert.ToBoolean: " + Convert.ToBoolean(boolInput));
 
-        bool boolFlag;
-        bool boolSuccess = bool.TryParse(boolInput, out boolFlag);
+        var boolSuccess = bool.TryParse(boolInput, out var boolFlag);
         if (boolSuccess)
         {
             Console.WriteLine("Parsed boolean using bool.TryParse: " + boolFlag);

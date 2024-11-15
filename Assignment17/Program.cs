@@ -13,7 +13,7 @@ namespace Assignment17
     {
         static int playCount = 0;
 
-        static void Main()
+        public static void Main(string[] args)
         {
             while (true)
             {
@@ -30,7 +30,7 @@ namespace Assignment17
 
                     var message = GetMessageForChoice(userChoice);
                     Console.WriteLine(message);
-                    string userInput = Console.ReadLine();
+                    var userInput = Console.ReadLine();
 
                     ValidateInput(userChoice, userInput);
 
@@ -99,7 +99,7 @@ namespace Assignment17
         static bool IsPrime(int number)
         {
             if (number <= 1) return false;
-            for (int i = 2; i <= Math.Sqrt(number); i++)
+            for (var i = 2; i <= Math.Sqrt(number); i++)
             {
                 if (number % i == 0) return false;
             }

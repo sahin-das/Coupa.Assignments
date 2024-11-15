@@ -1,133 +1,136 @@
 ﻿using System;
 
-public enum DuckType
+namespace Assignment5
 {
-    Rubber,
-    Mallard,
-    Redhead
-}
-
-internal interface IDuck
-{
-    double Weight { get; set; }
-    int NumberOfWings { get; set; }
-    DuckType TypeOfDuck { get; set; }
-    void Fly();
-    void MakeSound();
-    void ShowDetails();
-}
-
-public class RubberDuck : IDuck
-{
-    public double Weight { get; set; }
-    public int NumberOfWings { get; set; }
-    public DuckType TypeOfDuck { get; set; } = DuckType.Rubber;
-
-    public RubberDuck(double weight, int wings)
+    public enum DuckType
     {
-        Weight = weight;
-        NumberOfWings = wings;
+        Rubber,
+        Mallard,
+        Redhead
     }
 
-    public void Fly()
+    internal interface IDuck
     {
-        Console.WriteLine("Rubber ducks don’t fly.");
+        double Weight { get; set; }
+        int NumberOfWings { get; set; }
+        DuckType TypeOfDuck { get; set; }
+        void Fly();
+        void MakeSound();
+        void ShowDetails();
     }
 
-    public void MakeSound()
+    public class RubberDuck : IDuck
     {
-        Console.WriteLine("Rubber duck squeaks.");
+        public double Weight { get; set; }
+        public int NumberOfWings { get; set; }
+        public DuckType TypeOfDuck { get; set; } = DuckType.Rubber;
+
+        public RubberDuck(double weight, int wings)
+        {
+            Weight = weight;
+            NumberOfWings = wings;
+        }
+
+        public void Fly()
+        {
+            Console.WriteLine("Rubber ducks don’t fly.");
+        }
+
+        public void MakeSound()
+        {
+            Console.WriteLine("Rubber duck squeaks.");
+        }
+
+        public void ShowDetails()
+        {
+            Console.WriteLine("Details of Duck:");
+            Console.WriteLine($"Weight: {Weight}");
+            Console.WriteLine($"Number Of Wings: {NumberOfWings}");
+            Console.WriteLine($"Type Of Duck: {TypeOfDuck}\n");
+        }
     }
 
-    public void ShowDetails()
+    public class MallardDuck : IDuck
     {
-        Console.WriteLine("Details of Duck:");
-        Console.WriteLine($"Weight: {Weight}");
-        Console.WriteLine($"Number Of Wings: {NumberOfWings}");
-        Console.WriteLine($"Type Of Duck: {TypeOfDuck}\n");
-    }
-}
+        public double Weight { get; set; }
+        public int NumberOfWings { get; set; }
+        public DuckType TypeOfDuck { get; set; } = DuckType.Mallard;
 
-public class MallardDuck : IDuck
-{
-    public double Weight { get; set; }
-    public int NumberOfWings { get; set; }
-    public DuckType TypeOfDuck { get; set; } = DuckType.Mallard;
+        public MallardDuck(double weight, int wings)
+        {
+            Weight = weight;
+            NumberOfWings = wings;
+        }
 
-    public MallardDuck(double weight, int wings)
-    {
-        Weight = weight;
-        NumberOfWings = wings;
-    }
+        public void Fly()
+        {
+            Console.WriteLine("Mallard ducks fly fast.");
+        }
 
-    public void Fly()
-    {
-        Console.WriteLine("Mallard ducks fly fast.");
-    }
+        public void MakeSound()
+        {
+            Console.WriteLine("Mallard duck quacks loud.");
+        }
 
-    public void MakeSound()
-    {
-        Console.WriteLine("Mallard duck quacks loud.");
-    }
-
-    public void ShowDetails()
-    {
-        Console.WriteLine("Details of Duck:");
-        Console.WriteLine($"Weight: {Weight}");
-        Console.WriteLine($"Number Of Wings: {NumberOfWings}");
-        Console.WriteLine($"Type Of Duck: {TypeOfDuck}\n");
-    }
-}
-
-public class RedheadDuck : IDuck
-{
-    public double Weight { get; set; }
-    public int NumberOfWings { get; set; }
-    public DuckType TypeOfDuck { get; set; } = DuckType.Redhead;
-
-    public RedheadDuck(double weight, int wings)
-    {
-        Weight = weight;
-        NumberOfWings = wings;
+        public void ShowDetails()
+        {
+            Console.WriteLine("Details of Duck:");
+            Console.WriteLine($"Weight: {Weight}");
+            Console.WriteLine($"Number Of Wings: {NumberOfWings}");
+            Console.WriteLine($"Type Of Duck: {TypeOfDuck}\n");
+        }
     }
 
-    public void Fly()
+    public class RedheadDuck : IDuck
     {
-        Console.WriteLine("Redhead ducks fly slow.");
+        public double Weight { get; set; }
+        public int NumberOfWings { get; set; }
+        public DuckType TypeOfDuck { get; set; } = DuckType.Redhead;
+
+        public RedheadDuck(double weight, int wings)
+        {
+            Weight = weight;
+            NumberOfWings = wings;
+        }
+
+        public void Fly()
+        {
+            Console.WriteLine("Redhead ducks fly slow.");
+        }
+
+        public void MakeSound()
+        {
+            Console.WriteLine("Redhead duck quacks mildly.");
+        }
+
+        public void ShowDetails()
+        {
+            Console.WriteLine("Details of Duck:");
+            Console.WriteLine($"Weight: {Weight}");
+            Console.WriteLine($"Number Of Wings: {NumberOfWings}");
+            Console.WriteLine($"Type Of Duck: {TypeOfDuck}\n");
+        }
     }
 
-    public void MakeSound()
+    class Program
     {
-        Console.WriteLine("Redhead duck quacks mildly.");
-    }
+        static void Main()
+        {
+            var rubberDuck = new RubberDuck(0.5, 2);
+            var mallardDuck = new MallardDuck(1.5, 4);
+            var redheadDuck = new RedheadDuck(1, 3);
 
-    public void ShowDetails()
-    {
-        Console.WriteLine("Details of Duck:");
-        Console.WriteLine($"Weight: {Weight}");
-        Console.WriteLine($"Number Of Wings: {NumberOfWings}");
-        Console.WriteLine($"Type Of Duck: {TypeOfDuck}\n");
-    }
-}
+            rubberDuck.MakeSound();
+            rubberDuck.Fly();
+            rubberDuck.ShowDetails();
 
-class Program
-{
-    static void Main()
-    {
-        RubberDuck rubberDuck = new RubberDuck(0.5, 2);
-        MallardDuck mallardDuck = new MallardDuck(1.5, 4);
-        RedheadDuck redheadDuck = new RedheadDuck(1, 3);
+            mallardDuck.MakeSound();
+            mallardDuck.Fly();
+            mallardDuck.ShowDetails();
 
-        rubberDuck.MakeSound();
-        rubberDuck.Fly();
-        rubberDuck.ShowDetails();
-
-        mallardDuck.MakeSound();
-        mallardDuck.Fly();
-        mallardDuck.ShowDetails();
-
-        redheadDuck.MakeSound();
-        redheadDuck.Fly();
-        redheadDuck.ShowDetails();
+            redheadDuck.MakeSound();
+            redheadDuck.Fly();
+            redheadDuck.ShowDetails();
+        }
     }
 }

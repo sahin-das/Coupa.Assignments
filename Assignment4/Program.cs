@@ -6,13 +6,13 @@ abstract class Equipement
     protected string Description { get; set; }
     protected int DistanceMovedTillDate { get; set; } = 0;
     protected int MaintenanceCost { get; set; } = 0;
-    protected string TypeOfEquipement { get; set; }
+    protected string TypeOfEquipment { get; set; }
 
-    public Equipement(string name, string description, string typeOfEquipement)
+    public Equipement(string name, string description, string typeOfEquipment)
     {
         Name = name;
         Description = description;
-        TypeOfEquipement = typeOfEquipement;
+        TypeOfEquipment = typeOfEquipment;
         DistanceMovedTillDate = 0;
         MaintenanceCost = 0;
     }
@@ -22,18 +22,18 @@ abstract class Equipement
 
 class MobileEquipement : Equipement
 {
-    public int NumberOfWheels;
+    private int _NumberOfWheels;
 
-    public MobileEquipement(string name, string description, string typeOfEquipement, int numberOfWheels)
-        : base(name, description, typeOfEquipement)
+    public MobileEquipement(string name, string description, string typeOfEquipment, int numberOfWheels)
+        : base(name, description, typeOfEquipment)
     {
-        NumberOfWheels = numberOfWheels;
+        _NumberOfWheels = numberOfWheels;
     }
 
     public override void MoveBy(int distance)
     {
         DistanceMovedTillDate += distance;
-        MaintenanceCost += NumberOfWheels * distance;
+        MaintenanceCost += _NumberOfWheels * distance;
     }
 
     public void ShowDeatils()
@@ -43,37 +43,37 @@ class MobileEquipement : Equipement
         Console.WriteLine($"Description: {Description}");
         Console.WriteLine($"DistanceMovedTillDate: {DistanceMovedTillDate}");
         Console.WriteLine($"MaintenanceCost: {MaintenanceCost}");
-        Console.WriteLine($"TypeOfEquipement: {TypeOfEquipement}");
-        Console.WriteLine($"NumberOfWheels: {NumberOfWheels}");
+        Console.WriteLine($"TypeOfEquipment: {TypeOfEquipment}");
+        Console.WriteLine($"NumberOfWheels: {_NumberOfWheels}");
         Console.WriteLine("\n");
     }
 }
 
-class ImmobileEquipement : Equipement
+internal class ImmobileEquipment : Equipement
 {
-    public int Weight;
+    private int _Weight;
 
-    public ImmobileEquipement(string name, string description, string typeOfEquipement, int weight)
-        : base(name, description, typeOfEquipement)
+    public ImmobileEquipment(string name, string description, string typeOfEquipment, int weight)
+        : base(name, description, typeOfEquipment)
     {
-        Weight = weight;
+        _Weight = weight;
     }
 
     public override void MoveBy(int distance)
     {
         DistanceMovedTillDate += distance;
-        MaintenanceCost += Weight * distance;
+        MaintenanceCost += _Weight * distance;
     }
 
     public void ShowDeatils()
     {
-        Console.WriteLine("Details of Equipement:");
+        Console.WriteLine("Details of Equipment:");
         Console.WriteLine($"Name: {Name}");
         Console.WriteLine($"Description: {Description}");
         Console.WriteLine($"DistanceMovedTillDate: {DistanceMovedTillDate}");
         Console.WriteLine($"MaintenanceCost: {MaintenanceCost}");
-        Console.WriteLine($"TypeOfEquipement: {TypeOfEquipement}");
-        Console.WriteLine($"Weight: {Weight}");
+        Console.WriteLine($"TypeOfEquipment: {TypeOfEquipment}");
+        Console.WriteLine($"Weight: {_Weight}");
     }
 }
 
@@ -81,8 +81,8 @@ class Program
 {
     static void Main()
     {
-        MobileEquipement jcb = new MobileEquipement("JCB", "Construction Vehicle", "Mobile", 10);
-        ImmobileEquipement ladder = new ImmobileEquipement("Ladder", "Climbing stair", "Immobile", 50);
+        var jcb = new MobileEquipement("JCB", "Construction Vehicle", "Mobile", 10);
+        var ladder = new ImmobileEquipment("Ladder", "Climbing stair", "Immobile", 50);
 
         jcb.MoveBy(10);
         ladder.MoveBy(5);

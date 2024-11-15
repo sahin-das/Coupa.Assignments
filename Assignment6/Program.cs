@@ -1,143 +1,147 @@
 ﻿using System;
 
-abstract class Equipement
+namespace Assignment6
 {
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public int DistanceMovedTillDate { get; set; } = 0;
-    public int MaintenanceCost { get; set; } = 0;
-    public string TypeOfEquipement { get; set; }
-
-    public Equipement(string name, string description, string typeOfEquipement)
+    abstract class Equipment
     {
-        Name = name;
-        Description = description;
-        TypeOfEquipement = typeOfEquipement;
-        DistanceMovedTillDate = 0;
-        MaintenanceCost = 0;
-    }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        protected int DistanceMovedTillDate { get; set; } = 0;
+        protected int MaintenanceCost { get; set; } = 0;
+        public string TypeOfEquipment { get; set; }
 
-    public abstract void MoveBy(int distance);
-
-    public abstract void ShowDeatils();
-}
-
-class MobileEquipement : Equipement
-{
-    public int NumberOfWheels;
-
-    public MobileEquipement(string name, string description, string typeOfEquipement, int numberOfWheels)
-        : base(name, description, typeOfEquipement)
-    {
-        NumberOfWheels = numberOfWheels;
-    }
-
-    public override void MoveBy(int distance)
-    {
-        DistanceMovedTillDate += distance;
-        MaintenanceCost += NumberOfWheels * distance;
-    }
-
-    public override void ShowDeatils()
-    {
-        Console.WriteLine("Details of Equipement:");
-        Console.WriteLine($"Name: {Name}");
-        Console.WriteLine($"Description: {Description}");
-        Console.WriteLine($"DistanceMovedTillDate: {DistanceMovedTillDate}");
-        Console.WriteLine($"MaintenanceCost: {MaintenanceCost}");
-        Console.WriteLine($"TypeOfEquipement: {TypeOfEquipement}");
-        Console.WriteLine($"NumberOfWheels: {NumberOfWheels}");
-        Console.WriteLine("\n");
-    }
-}
-
-class ImmobileEquipement : Equipement
-{
-    public int Weight;
-
-    public ImmobileEquipement(string name, string description, string typeOfEquipement, int weight)
-        : base(name, description, typeOfEquipement)
-    {
-        Weight = weight;
-    }
-
-    public override void MoveBy(int distance)
-    {
-        DistanceMovedTillDate += distance;
-        MaintenanceCost += Weight * distance;
-    }
-
-    public override void ShowDeatils()
-    {
-        Console.WriteLine("Details of Equipement:");
-        Console.WriteLine($"Name: {Name}");
-        Console.WriteLine($"Description: {Description}");
-        Console.WriteLine($"DistanceMovedTillDate: {DistanceMovedTillDate}");
-        Console.WriteLine($"MaintenanceCost: {MaintenanceCost}");
-        Console.WriteLine($"TypeOfEquipement: {TypeOfEquipement}");
-        Console.WriteLine($"Weight: {Weight}");
-    }
-}
-
-class Program
-{
-    static void Main()
-    {
-        List<Equipement> equipements = new List<Equipement>();
-        equipements.Add(new MobileEquipement("JCB", "Construction Vehicle", "Mobile", 10));
-        equipements.Add(new ImmobileEquipement("Ladder", "Stair to climb", "Immobile", 40));
-        equipements.Add(new MobileEquipement("Truck", "Carry Transport Vehicle", "Mobile", 50));
-        equipements.Add(new ImmobileEquipement("Brush", "Brush to paint", "Immobile", 100));
-
-        List<int> equipmentsToMove = new List<int>();
-        equipmentsToMove.Add(0);
-        equipmentsToMove.Add(2);
-
-        foreach (var index in equipmentsToMove)
+        public Equipment(string name, string description, string typeOfEquipment)
         {
-            equipements[index].MoveBy(10);
+            Name = name;
+            Description = description;
+            TypeOfEquipment = typeOfEquipment;
+            DistanceMovedTillDate = 0;
+            MaintenanceCost = 0;
         }
 
-        Console.WriteLine("Equipments that has not been moved till now");
-        for (int index = 0; index < equipements.Count; index++)
+        public abstract void MoveBy(int distance);
+
+        public abstract void ShowDeatils();
+    }
+
+    class MobileEquipment : Equipment
+    {
+        public int NumberOfWheels;
+
+        public MobileEquipment(string name, string description, string typeOfEquipment, int numberOfWheels)
+            : base(name, description, typeOfEquipment)
         {
-            if(!equipmentsToMove.Contains(index)){
-                equipements[index].ShowDeatils();
+            NumberOfWheels = numberOfWheels;
+        }
+
+        public override void MoveBy(int distance)
+        {
+            DistanceMovedTillDate += distance;
+            MaintenanceCost += NumberOfWheels * distance;
+        }
+
+        public override void ShowDeatils()
+        {
+            Console.WriteLine("Details of Equipment:");
+            Console.WriteLine($"Name: {Name}");
+            Console.WriteLine($"Description: {Description}");
+            Console.WriteLine($"DistanceMovedTillDate: {DistanceMovedTillDate}");
+            Console.WriteLine($"MaintenanceCost: {MaintenanceCost}");
+            Console.WriteLine($"TypeOfEquipment: {TypeOfEquipment}");
+            Console.WriteLine($"NumberOfWheels: {NumberOfWheels}");
+            Console.WriteLine("\n");
+        }
+    }
+
+    class ImmobileEquipment : Equipment
+    {
+        public int Weight;
+
+        public ImmobileEquipment(string name, string description, string typeOfEquipment, int weight)
+            : base(name, description, typeOfEquipment)
+        {
+            Weight = weight;
+        }
+
+        public override void MoveBy(int distance)
+        {
+            DistanceMovedTillDate += distance;
+            MaintenanceCost += Weight * distance;
+        }
+
+        public override void ShowDeatils()
+        {
+            Console.WriteLine("Details of Equipment:");
+            Console.WriteLine($"Name: {Name}");
+            Console.WriteLine($"Description: {Description}");
+            Console.WriteLine($"DistanceMovedTillDate: {DistanceMovedTillDate}");
+            Console.WriteLine($"MaintenanceCost: {MaintenanceCost}");
+            Console.WriteLine($"TypeOfEquipment: {TypeOfEquipment}");
+            Console.WriteLine($"Weight: {Weight}");
+        }
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+            var equipments = new List<Equipment>();
+            equipments.Add(new MobileEquipment("JCB", "Construction Vehicle", "Mobile", 10));
+            equipments.Add(new ImmobileEquipment("Ladder", "Stair to climb", "Immobile", 40));
+            equipments.Add(new MobileEquipment("Truck", "Carry Transport Vehicle", "Mobile", 50));
+            equipments.Add(new ImmobileEquipment("Brush", "Brush to paint", "Immobile", 100));
+
+            var equipmentsToMove = new List<int>();
+            equipmentsToMove.Add(0);
+            equipmentsToMove.Add(2);
+
+            foreach (var index in equipmentsToMove)
+            {
+                equipments[index].MoveBy(10);
             }
+
+            Console.WriteLine("Equipments that has not been moved till now");
+            for (int index = 0; index < equipments.Count; index++)
+            {
+                if (!equipmentsToMove.Contains(index))
+                {
+                    equipments[index].ShowDeatils();
+                }
+            }
+
+            Console.WriteLine("\nName and Description of all the equipements:");
+            foreach (var equipment in equipments)
+            {
+                Console.WriteLine(equipment.Name);
+                Console.WriteLine(equipment.Description);
+            }
+
+            Console.WriteLine("\nAll details of all the equipements:");
+            foreach (var equipment in equipments)
+            {
+                equipment.ShowDeatils();
+            }
+
+            Console.WriteLine("\nMobile Equipments:");
+            foreach (var equipment in equipments.Where(e => e.TypeOfEquipment.Equals("Mobile")))
+            {
+                equipment.ShowDeatils();
+            }
+
+            Console.WriteLine("\nImmobile Equipments:");
+            foreach (var equipment in equipments.Where(e => e.TypeOfEquipment.Equals("Immobile")))
+            {
+                equipment.ShowDeatils();
+            }
+
+            // Removing all the immobile equipments
+            equipments.RemoveAll(e => e.TypeOfEquipment.Equals("Mobile"));
+
+            // Removing all the immobile equipments
+            equipments.RemoveAll(e => e.TypeOfEquipment.Equals("Immobile"));
+
+            // Removing all the equiments
+            equipments.Clear();
         }
-
-        Console.WriteLine("\nName and Description of all the equipements:");
-        foreach (var equipement in equipements)
-        {
-            Console.WriteLine(equipement.Name);
-            Console.WriteLine(equipement.Description);
-        }
-
-        Console.WriteLine("\nAll details of all the equipements:");
-        foreach (var equipement in equipements)
-        {
-            equipement.ShowDeatils();
-        }
-
-        Console.WriteLine("\nMobile Equipments:");
-        foreach (var equipement in equipements.Where(e => e.TypeOfEquipement.Equals("Mobile")))
-        {
-            equipement.ShowDeatils();
-        }
-
-        Console.WriteLine("\nImmobile Equipments:");
-        foreach (var equipement in equipements.Where(e => e.TypeOfEquipement.Equals("Immobile")))
-        {
-            equipement.ShowDeatils();
-        }
-
-        // Removing all the immobile equipments
-        equipements.RemoveAll(e => e.TypeOfEquipement.Equals("Mobile"));
-
-        // Removing all the immobile equipments
-        equipements.RemoveAll(e => e.TypeOfEquipement.Equals("Immobile"));
-
-        // Removing all the equiments
-        equipements.Clear();
     }
 }
