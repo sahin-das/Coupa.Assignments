@@ -10,7 +10,7 @@ namespace Assignment4
         protected int MaintenanceCost { get; set; } = 0;
         protected string TypeOfEquipment { get; set; }
 
-        public Equipment(string name, string description, string typeOfEquipment)
+        protected Equipment(string name, string description, string typeOfEquipment)
         {
             Name = name;
             Description = description;
@@ -20,6 +20,7 @@ namespace Assignment4
         }
 
         public abstract void MoveBy(int distance);
+        public abstract void ShowDetails();
     }
 
     class MobileEquipment : Equipment
@@ -38,7 +39,7 @@ namespace Assignment4
             MaintenanceCost += _numberOfWheels * distance;
         }
 
-        public void ShowDeatils()
+        public override void ShowDetails()
         {
             Console.WriteLine("Details of Equipment:");
             Console.WriteLine($"Name: {Name}");
@@ -67,7 +68,7 @@ namespace Assignment4
             MaintenanceCost += _Weight * distance;
         }
 
-        public void ShowDeatils()
+        public override void ShowDetails()
         {
             Console.WriteLine("Details of Equipment:");
             Console.WriteLine($"Name: {Name}");
@@ -81,7 +82,7 @@ namespace Assignment4
 
     class Program
     {
-        static void Main()
+        public static void Main()
         {
             var jcb = new MobileEquipment("JCB", "Construction Vehicle", "Mobile", 10);
             var ladder = new ImmobileEquipment("Ladder", "Climbing stair", "Immobile", 50);
@@ -89,8 +90,8 @@ namespace Assignment4
             jcb.MoveBy(10);
             ladder.MoveBy(5);
 
-            jcb.ShowDeatils();
-            ladder.ShowDeatils();
+            jcb.ShowDetails();
+            ladder.ShowDetails();
         }
     }
 }

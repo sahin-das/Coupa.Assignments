@@ -21,7 +21,7 @@ namespace Assignment6
 
         public abstract void MoveBy(int distance);
 
-        public abstract void ShowDeatils();
+        public abstract void ShowDetails();
     }
 
     class MobileEquipment : Equipment
@@ -40,7 +40,7 @@ namespace Assignment6
             MaintenanceCost += NumberOfWheels * distance;
         }
 
-        public override void ShowDeatils()
+        public override void ShowDetails()
         {
             Console.WriteLine("Details of Equipment:");
             Console.WriteLine($"Name: {Name}");
@@ -69,7 +69,7 @@ namespace Assignment6
             MaintenanceCost += Weight * distance;
         }
 
-        public override void ShowDeatils()
+        public override void ShowDetails()
         {
             Console.WriteLine("Details of Equipment:");
             Console.WriteLine($"Name: {Name}");
@@ -83,7 +83,7 @@ namespace Assignment6
 
     class Program
     {
-        static void Main()
+        public static void Main()
         {
             var equipments = new List<Equipment>();
             equipments.Add(new MobileEquipment("JCB", "Construction Vehicle", "Mobile", 10));
@@ -105,33 +105,33 @@ namespace Assignment6
             {
                 if (!equipmentsToMove.Contains(index))
                 {
-                    equipments[index].ShowDeatils();
+                    equipments[index].ShowDetails();
                 }
             }
 
-            Console.WriteLine("\nName and Description of all the equipements:");
+            Console.WriteLine("\nName and Description of all the equipments:");
             foreach (var equipment in equipments)
             {
                 Console.WriteLine(equipment.Name);
                 Console.WriteLine(equipment.Description);
             }
 
-            Console.WriteLine("\nAll details of all the equipements:");
+            Console.WriteLine("\nAll details of all the equipments:");
             foreach (var equipment in equipments)
             {
-                equipment.ShowDeatils();
+                equipment.ShowDetails();
             }
 
             Console.WriteLine("\nMobile Equipments:");
             foreach (var equipment in equipments.Where(e => e.TypeOfEquipment.Equals("Mobile")))
             {
-                equipment.ShowDeatils();
+                equipment.ShowDetails();
             }
 
             Console.WriteLine("\nImmobile Equipments:");
             foreach (var equipment in equipments.Where(e => e.TypeOfEquipment.Equals("Immobile")))
             {
-                equipment.ShowDeatils();
+                equipment.ShowDetails();
             }
 
             // Removing all the immobile equipments
@@ -140,7 +140,7 @@ namespace Assignment6
             // Removing all the immobile equipments
             equipments.RemoveAll(e => e.TypeOfEquipment.Equals("Immobile"));
 
-            // Removing all the equiments
+            // Removing all the equipments
             equipments.Clear();
         }
     }
