@@ -1,17 +1,12 @@
-﻿using System;
-
-namespace Assignment17
+﻿namespace Assignment17
 {
-    class CustomException : Exception
+    public class CustomException(string message) : Exception(message)
     {
-        public CustomException(string message) : base(message)
-        {
-        }
     }
 
     class Program
     {
-        static int playCount;
+        private static int _playCount;
 
         public static void Main(string[] args)
         {
@@ -19,14 +14,8 @@ namespace Assignment17
             {
                 try
                 {
-                    if (playCount == 5)
-                    {
-                        Console.WriteLine("You have played this game 5 times.");
-                        break;
-                    }
-
                     Console.WriteLine("Enter any number from 1-5:");
-                    var userChoice = Convert.ToInt32(Console.ReadLine()); 
+                    var userChoice = Convert.ToInt32(Console.ReadLine());
 
                     switch (userChoice)
                     {
@@ -48,12 +37,20 @@ namespace Assignment17
                         default:
                             throw new CustomException("Invalid choice! Please enter a number between 1 and 5.");
                     }
-                    
-                    var userInput = Console.ReadLine();
-                    ValidateInput(userChoice, Convert.ToInt32(userInput));
 
-                    playCount++;
-                    Console.WriteLine("Success! You've entered a valid number. Let's try again.\n");
+                    var userInput = Console.ReadLine();
+                    var success = ValidateInput(userChoice, Convert.ToInt32(userInput));
+
+                    _playCount++;
+                    if (success)
+                    {
+                        Console.WriteLine("Success! You've entered a valid number. Let's try again.\n");
+                    }
+                    else if (_playCount == 5)
+                    {
+                        Console.WriteLine("You have played this game 5 times.");
+                        break;
+                    }
                 }
                 catch (CustomException ex)
                 {

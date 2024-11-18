@@ -6,11 +6,17 @@
         {
             Console.Write("Enter the directory path: ");
             var directoryPath = Console.ReadLine();
-            // var directoryPath = @"C:\Users\SahinDas";
 
             try
             {
-                AnalyzeDirectory(directoryPath);
+                if (Directory.Exists(directoryPath))
+                {
+                    AnalyzeDirectory(directoryPath);
+                }
+                else
+                {
+                    Console.WriteLine("Directory doesn't exist!");
+                }
             }
             catch (Exception ex)
             {
@@ -26,20 +32,20 @@
                 Console.WriteLine("No files found.");
                 return;
             }
-            
+
             Console.WriteLine($"Found {files.Length} files.");
-            
+
             var textFiles = files.Where(f => f.EndsWith(".txt"));
             Console.WriteLine($"TextFiles Found in {directoryPath}: {textFiles.Count()}");
-            
+
             var fileCount = new Dictionary<string, int>();
             foreach (var file in files)
             {
                 var extension = Path.GetExtension(file);
-                fileCount.TryGetValue(extension, out var count); 
+                fileCount.TryGetValue(extension, out var count);
                 fileCount[extension] = count + 1;
             }
-            
+
             Console.WriteLine($"Counts of each extensions:");
             foreach (var keyValuePair in fileCount)
             {
@@ -51,13 +57,13 @@
                 .OrderByDescending(file => file.Size)
                 .Take(5)
                 .ToList();
-            
+
             Console.WriteLine("Top 5 largest files found:");
             foreach (var fileDetail in fileDetails)
             {
                 Console.WriteLine(fileDetail.File + " (" + fileDetail.Size + " bytes)");
             }
-            
+
             Console.WriteLine("File with maximum length: " + fileDetails[0].File);
         }
     }
