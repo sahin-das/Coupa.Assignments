@@ -120,17 +120,16 @@ namespace Assignment5
             var mallardDuck = new MallardDuck(1.5, 4);
             var redheadDuck = new RedheadDuck(1, 3);
 
-            rubberDuck.MakeSound();
-            rubberDuck.Fly();
-            rubberDuck.ShowDetails();
+            CallDuck(rubberDuck);
+            CallDuck(mallardDuck);
+            CallDuck(redheadDuck);
+        }
 
-            mallardDuck.MakeSound();
-            mallardDuck.Fly();
-            mallardDuck.ShowDetails();
-
-            redheadDuck.MakeSound();
-            redheadDuck.Fly();
-            redheadDuck.ShowDetails();
+        private static void CallDuck(IDuck duck)
+        {
+            duck.MakeSound();
+            duck.Fly();
+            duck.ShowDetails();
         }
     }
 }

@@ -46,6 +46,8 @@
                 fileCount[extension] = count + 1;
             }
 
+            // LINQ
+            
             Console.WriteLine($"Counts of each extensions:");
             foreach (var keyValuePair in fileCount)
             {

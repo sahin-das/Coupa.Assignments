@@ -84,8 +84,8 @@ namespace Assignment4
     {
         public static void Main()
         {
-            var jcb = new MobileEquipment("JCB", "Construction Vehicle", "Mobile", 10);
-            var ladder = new ImmobileEquipment("Ladder", "Climbing stair", "Immobile", 50);
+            Equipment jcb = new MobileEquipment("JCB", "Construction Vehicle", "Mobile", 10);
+            Equipment ladder = new ImmobileEquipment("Ladder", "Climbing stair", "Immobile", 50);
 
             jcb.MoveBy(10);
             ladder.MoveBy(5);

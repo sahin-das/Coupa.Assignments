@@ -101,7 +101,7 @@ namespace Assignment6
             }
 
             Console.WriteLine("Equipments that has not been moved till now");
-            for (int index = 0; index < equipments.Count; index++)
+            for (var index = 0; index < equipments.Count; index++)
             {
                 if (!equipmentsToMove.Contains(index))
                 {
