@@ -3,17 +3,12 @@
 -- Values if user does not enter any value.
 
 
-ALTER PROCEDURE dbo.searchPerson
-	@FirstName NVARCHAR(50)
+ALTER PROCEDURE GetPersonDetails
+    @FirstName NVARCHAR(50) = NULL
 AS
 BEGIN
-	if exists(
-		select FirstName + ' ' + LastName as Name
-		from Person.Person as p
-		where p.FirstName = @FirstName
-	) 	select FirstName + ' ' + LastName as Name
-		from Person.Person as p
-		where p.FirstName = @FirstName
-	else
-		select 'John Doe' as Name
+    -- If the user does not supply a value for @FirstName, select all records
+    SELECT BusinessEntityID, FirstName, LastName, EmailPromotion
+    FROM Person.Person
+    WHERE (@FirstName IS NULL OR FirstName = @FirstName);
 END;
