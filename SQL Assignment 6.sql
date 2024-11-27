@@ -5,15 +5,22 @@
 
 CREATE TRIGGER enforce_price_rule
 ON Production.Product
-for update
-as
-begin
-	DECLARE @oldPrice int, @newPrice int
-	select @oldPrice=a.ListPrice, @newPrice=b.ListPrice
-	from inserted a, deleted b
-	IF @newPrice > (@oldPrice * 1.15)
-	BEGIN
-		PRINT 'Cannnot raised more than 15 Percent in a single change'
-		ROLLBACK TRAN
-	END
+FOR UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF (UPDATE(ListPrice))
+    BEGIN
+        IF EXISTS (
+            SELECT 1
+            FROM Inserted i
+            JOIN Deleted d ON i.ProductID = d.ProductID
+            WHERE i.ListPrice > d.ListPrice * 1.15
+        )
+        BEGIN
+            RAISERROR ('Cannot raise ListPrice by more than 15% in a single change.', 16, 1);
+            ROLLBACK TRANSACTION;
+        END
+    END
 END;
