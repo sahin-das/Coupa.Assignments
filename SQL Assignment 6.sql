@@ -3,7 +3,7 @@
 -- to execute its check code only if the ListPrice column is updated
 
 
-CREATE TRIGGER enforce_price_rule
+CREATE TRIGGER enforcePriceRule
 ON Production.Product
 FOR UPDATE
 AS
@@ -19,8 +19,17 @@ BEGIN
             WHERE i.ListPrice > d.ListPrice * 1.15
         )
         BEGIN
-            RAISERROR ('Cannot raise ListPrice by more than 15% in a single change.', 16, 1);
+            RAISERROR ('Cannot raise ListPrice by more than 15 percent in a single change.', 16, 1);
             ROLLBACK TRANSACTION;
         END
     END
 END;
+
+
+UPDATE Production.Product
+SET ListPrice = 100.00
+WHERE ProductID = 1;
+
+UPDATE Production.Product
+SET ListPrice = 120.00
+WHERE ProductID = 1;

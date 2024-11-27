@@ -3,7 +3,7 @@
 -- Values if user does not enter any value.
 
 
-ALTER PROCEDURE GetPersonDetails
+ALTER PROCEDURE dbo.GetPersonDetails
     @FirstName NVARCHAR(50) = NULL
 AS
 BEGIN
@@ -12,3 +12,6 @@ BEGIN
     FROM Person.Person
     WHERE (@FirstName IS NULL OR FirstName = @FirstName);
 END;
+
+
+EXEC dbo.GetPersonDetails;
