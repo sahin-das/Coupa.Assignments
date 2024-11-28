@@ -3,9 +3,8 @@
 -- ProductID, UnitPrice, and the unit price converted to the target currency based on the end of 
 -- day rate for the date provided. Exchange rates can be found in the Sales.CurrencyRate table.
 
-use AdventureWorks2022;
-Go
-
+USE AdventureWorks2022;
+GO
 
 ALTER FUNCTION dbo.getSalesDetailsCustom (
     @SalesOrderID INT,
@@ -17,23 +16,24 @@ AS
 RETURN
 (
     SELECT
-		OrderQty
-		ProductID,
-		UnitPrice,
-		UnitPrice * EndOfDayRate as ConvertedUnitPrice
+        so.OrderQty,
+        so.ProductID,
+        so.UnitPrice,
+        so.UnitPrice * cr.EndOfDayRate AS ConvertedUnitPrice
     FROM Sales.SalesOrderDetail AS so
-	CROSS APPLY (
-		select TOP 1
-			sc.EndOfDayRate
-		from Sales.CurrencyRate sc
+    CROSS APPLY (
+        SELECT TOP 1
+            sc.EndOfDayRate
+        FROM Sales.CurrencyRate AS sc
         WHERE sc.ToCurrencyCode = @CurrencyCode
           AND sc.FromCurrencyCode = 'USD'
           AND sc.CurrencyRateDate <= @Date
-	) as cr
-	WHERE so.SalesOrderID = @SalesOrderID
+        ORDER BY sc.CurrencyRateDate DESC
+    ) AS cr
+    WHERE so.SalesOrderID = @SalesOrderID
 );
 GO
 
 
 SELECT * 
-FROM getSalesDetailsCustom(43659, 'ARS', '2011-05-31');
+FROM dbo.getSalesDetailsCustom(43659, 'ARS', '2011-05-31');
